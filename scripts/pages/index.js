@@ -9,34 +9,26 @@
     In the code you provided, the spread operator is used to create a new array by spreading the original photographers array three times:
     [...photographers, ...photographers, ...photographers]. 
     This creates a new array that contains three copies of the original photographers array. */
-    
     async function getPhotographers() {
-        let data;
-        try {
-          // Fetch data from the JSON file
-          const response = await fetch("./data/photographers.json", {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-      
-          // Check if the response status is not ok and throw an error
-          if (!response.ok) {
-            throw new Error(`An error occurred: ${response.status}`);
-          }
-      
-          // Parse the response data as JSON
-          data = await response.json();
-          console.log('Data returned by response.json():', data);
-        } catch (error) {
-          console.log(error);
+      try {
+        // Fetch data from the JSON file
+        const response = await fetch("./data/photographers.json");
+     
+        // Check if the response status is not ok and throw an error
+        if (!response.ok) {
+          throw new Error(`An error occurred: ${response.status}`);
         }
-      
+     
+        // Parse the response data as JSON
+        const data = await response.json();
+        console.log('Data returned by response.json():', data);
+        
         // Return the data once it has been fetched
         return data;
+      } catch (error) {
+        console.log(error);
       }
+    }
 
     /**
      This is an async JavaScript function named displayData that takes an array of photographers as an argument. 
