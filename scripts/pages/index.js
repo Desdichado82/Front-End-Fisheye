@@ -69,39 +69,12 @@
         const data = await getPhotographers();
         console.log('Data returned by getPhotographers:', data);
         const photographers = data.photographers;
-        //const media = data.media;
-        displayData(photographers);
+        const media = data.media;
+        displayData(photographers,media);
         
     }
     
     init();
 
 
-    /*
-    USING Fetch !!
-    fetch is a JavaScript function that allows you to make network requests to retrieve resources, 
-    such as JSON data from a file. Here’s an example that shows how to use fetch to retrieve data from a JSON file:
-    
-            async function getData() {
-        try {
-            const response = await fetch('<URL>');
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-        }
-
-        getData();
-
-    In this example, the getData function uses fetch to make a request to the specified URL.
-    The await keyword is used to wait for the request to complete and the response to be returned.
-    The response.json() method is then used to parse the JSON data from the response.
-
-    The try...catch statement is used to handle any errors that may occur during the request. 
-    If an error occurs, it is logged to the console using console.error.
-
-    Once the data has been retrieved and parsed, it can be accessed and used in your code.
-
-    */
     

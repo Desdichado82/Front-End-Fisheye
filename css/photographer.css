@@ -6,6 +6,10 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .contact_button {
@@ -74,3 +78,39 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+.photograph-header img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: fill;
+    overflow: hidden;
+}
+/* Give each child element a different order value */
+.photograph-header > :nth-child(1) {
+    order: 2;
+  }
+  
+  .photograph-header > :nth-child(2) {
+    order: 1;
+  }
+  
+  .photograph-header > :nth-child(3) {
+    order: 3;
+  }
+
+  .photograph-header h2{
+    font-family: 'DM Sans';
+    font-size: 3em;
+    font-weight: 400;
+    color:#D3573C;
+    margin:0px;
+  }
+
+  .location{
+    font-size: 2em;
+    color:#D3573C;
+    margin:0;
+  }
+
+
