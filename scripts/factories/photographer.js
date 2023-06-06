@@ -34,7 +34,7 @@ function photographerFactory(data) {
       return article;
     }
   
-    function displayInfo() {
+    function displayProfile() {
       const photographersHeader = document.querySelector('.photograph-header');
       const info = document.createElement('div');
       const picture = `assets/photographers/${portrait}`;
@@ -60,6 +60,6 @@ function photographerFactory(data) {
       info.appendChild(taglineTag);
     }
   
-    return {getUserCardDOM, displayInfo };
+    return {getUserCardDOM, displayProfile };
   }
   
