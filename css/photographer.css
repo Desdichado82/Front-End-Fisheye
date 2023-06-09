@@ -134,9 +134,6 @@ form input {
     max-height: 300px;
     object-fit: cover;
   }
-
-
-
   .lightbox {
     position: fixed;
     z-index: 1;
@@ -160,8 +157,8 @@ form input {
     position: absolute;
     top: 15px;
     right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
+    color: #901C1C;
+    font-size: 2.5em;
     font-weight: bold;
   }
   
@@ -174,7 +171,7 @@ form input {
   
   .slides {
       display:none;
-      width:700px;
+      width:600px;
       height:500px
   }
   
@@ -188,7 +185,7 @@ form input {
       margin-top:-50px;
       color:#901C1C;
       font-weight:bold;
-      font-size:20px;
+      font-size:1.25em;
       transition:.6s ease
   }
   
@@ -202,17 +199,23 @@ form input {
   
   .slides img,
   .slides video {
-     width:700px; 
-     height:500px; 
-     object-fit : contain; 
-     display:block; 
-     margin-left:auto; 
-     margin-right:auto
+    max-width: 100%;
+    max-height: 100%;
+    object-fit : contain; 
+    display:block; 
+    margin-left:auto; 
+    margin-right:auto
+  }
+
+  #caption{
+    font-size: 2.5em;
+    font-weight: bold;
+    color:#901C1C;
   }
   
   @media only screen and (max-width :300px) {
       .lightbox .prev,.lightbox .next,.lightbox captionText {
-          font-size:11px
+          font-size:.6875em
       }
   }
   
