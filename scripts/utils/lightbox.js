@@ -7,18 +7,14 @@ class Lightbox {
     this.slideIndex =  media.findIndex(m => m.id === item.id) + 1;
     
 
-    const closeSpan = document.createElement('span');
-    closeSpan.className = 'close cursor';
-    closeSpan.onclick = () => { this.closeModal(); };
-    closeSpan.innerHTML = '×';
-    this.lightboxModal.appendChild(closeSpan);
-
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
     this.lightboxModal.appendChild(modalContent);
 
       // Set modalContent property
       this.modalContent = modalContent;
+
+     
 
     for (let i = 0; i < media.length; i++) {
       const mySlide = document.createElement('div');
@@ -38,6 +34,12 @@ class Lightbox {
 
       modalContent.appendChild(mySlide);
     }
+
+    const closeSpan = document.createElement('span');
+    closeSpan.className = 'close cursor';
+    closeSpan.onclick = () => { this.closeModal(); };
+    closeSpan.innerHTML = '×';
+    modalContent.appendChild(closeSpan);
 
     const prevA = document.createElement('a');
     prevA.className = 'prev';

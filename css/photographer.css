@@ -153,13 +153,17 @@ form input {
     height: 100%;
   }
   
-  .lightbox .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #901C1C;
-    font-size: 2.5em;
-    font-weight: bold;
+  .modal-content .close {
+
+    position:absolute;
+    top:10%;
+    width:auto;
+    padding:16px;
+    margin-top:-50px;
+    color:#901C1C;
+    font-weight:bold;
+    font-size:2.25em;
+    transition:.6s ease
   }
   
   .lightbox .close:hover,
@@ -196,6 +200,10 @@ form input {
   .prev {
    left: calc((100% - 700px) / 2);
   }
+  .modal-content .close {
+    right: calc((100% - 700px) / 2);
+}
+  
   
   .slides img,
   .slides video {
