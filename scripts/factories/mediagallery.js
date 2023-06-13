@@ -5,6 +5,13 @@ function mediaFactory(media) {
     
     const main = document.getElementById('main');
     console.log('main element:', main);
+
+    // clear existing gallery 
+  const existingGallery = main.querySelector('.gallery');
+  if (existingGallery) {
+    main.removeChild(existingGallery);
+  }
+
     const gallery = document.createElement('div');
     gallery.className = 'gallery';
     
@@ -30,17 +37,16 @@ function mediaFactory(media) {
       }
       
       // Check if a media element was created (either an `img` or `video` element)
-      if (mediaElement) {
-        mediaElement.onclick = () => {
-          openLightbox(media,item);
-        };
-        gallery.appendChild(article);
-      }
-    });
-    main.appendChild(gallery);
-    
-   
-    return gallery;
+    if (mediaElement) {
+      mediaElement.onclick = () => {
+        openLightbox(media, item);
+      };
+      gallery.appendChild(article);
+    }
+  });
+  main.appendChild(gallery);
+
+  return gallery;
   }
   
    

@@ -212,6 +212,28 @@ form input {
     font-weight: bold;
     color:#901C1C;
   }
+
+
+  /*dropdown container*/
+
+  #dropdown-container{
+    margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100px
+  }
+
+  select{
+    font-size:1.5rem;
+    padding:0.5em 0.5em;
+    background-color:#901C1C;
+    color:white;
+    border-bottom: white 1px solid;
+    border:0;
+  }
+
+ 
   
   @media only screen and (max-width :300px) {
       .lightbox .prev,.lightbox .next,.lightbox captionText {

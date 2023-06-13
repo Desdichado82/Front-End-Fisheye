@@ -17,6 +17,9 @@ class Lightbox {
     modalContent.className = 'modal-content';
     this.lightboxModal.appendChild(modalContent);
 
+      // Set modalContent property
+      this.modalContent = modalContent;
+
     for (let i = 0; i < media.length; i++) {
       const mySlide = document.createElement('div');
       mySlide.className = 'slides';
@@ -57,6 +60,33 @@ class Lightbox {
     captionContainerDiv.appendChild(captionP);
     modalContent.appendChild(captionContainerDiv);
     document.body.appendChild(this.lightboxModal);
+  }
+
+  updateMediaElements() {
+    // Remove existing media elements
+    const slides = document.querySelectorAll('.slides');
+    slides.forEach((slide) => {
+      slide.remove();
+    });
+
+    // Create new media elements
+    for (let i = 0; i < this.media.length; i++) {
+      const mySlide = document.createElement('div');
+      mySlide.className = 'slides';
+
+      let mediaElement;
+      if (this.media[i].image) {
+        mediaElement = createImageElement(this.media[i]);
+        mySlide.appendChild(mediaElement);
+      } else if (this.media[i].video) {
+        mediaElement = createVideoElement(this.media[i]);
+        mediaElement.controls = true;
+        mySlide.appendChild(mediaElement);
+      }
+
+      // Append mySlide to modalContent property
+      this.modalContent.appendChild(mySlide);
+    }
   }
 
   closeModal() {
