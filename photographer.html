@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
@@ -13,15 +13,16 @@
 
     <header>
       <a href="./index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye logo" />
       </a>
     
     </header>
    
     <main id="main" class="main-content">
-      <div id="photograph-profile" class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+      <section id="photograph-profile" class="photograph-header">
+        <h2 class="visually-hidden">Photographers profile</h2>
+        <button class="contact_button" tabindex="0">Contactez-moi</button>
+      </section>
       <div id="dropdown-container"></div>
     </main>
  
@@ -29,16 +30,16 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0"/>
         </header>
         
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+        <form>
+          <div>
+            <label for="first-name">Prénom</label>
+            <input id="first-name" />
+          </div>
+          <button class="contact_button" aria-label="envoyer button" tabindex="0">Envoyer</button>
+        </form>
 			</div>
 		</div>
     <script src="./scripts/utils/imageCreator.js"></script>
