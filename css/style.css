@@ -23,6 +23,14 @@ h1 {
     height: 50px;
     margin-left: 100px;
 }
+/* hide section title for screen readers*/
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+  }
 
 .photographer_section {
     display: grid;

@@ -35,23 +35,44 @@ class Lightbox {
       modalContent.appendChild(mySlide);
     }
 
-    const closeSpan = document.createElement('span');
-    closeSpan.className = 'close cursor';
-    closeSpan.onclick = () => { this.closeModal(); };
-    closeSpan.innerHTML = '×';
-    modalContent.appendChild(closeSpan);
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close cursor';
+    closeButton.onclick = () => { this.closeModal(); };
+    closeButton.innerHTML = '×';
+    closeButton.setAttribute('aria-label', 'Close lightbox');
+    closeButton.tabIndex = 0;
+    closeButton.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.closeModal();
+      }
+    });
+    modalContent.appendChild(closeButton);
 
-    const prevA = document.createElement('a');
-    prevA.className = 'prev';
-    prevA.onclick = () => { this.plusSlides(-1); };
-    prevA.innerHTML = '❮';
-    modalContent.appendChild(prevA);
+    const prevButton = document.createElement('button');
+    prevButton.className = 'prev';
+    prevButton.onclick = () => { this.plusSlides(-1); };
+    prevButton.innerHTML = '❮';
+    prevButton.setAttribute('aria-label', 'Previous slide');
+    prevButton.tabIndex = 0;
+    prevButton.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.plusSlides(-1);
+      }
+    });
+    modalContent.appendChild(prevButton);
 
-    const nextA = document.createElement('a');
-    nextA.className = 'next';
-    nextA.onclick = () => { this.plusSlides(1); };
-    nextA.innerHTML = '❯';
-    modalContent.appendChild(nextA);
+    const nextButton = document.createElement('button');
+    nextButton.className = 'next';
+    nextButton.onclick = () => { this.plusSlides(1); };
+    nextButton.innerHTML = '❯';
+    nextButton.setAttribute('aria-label', 'Next slide');
+    nextButton.tabIndex = 0;
+    nextButton.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.plusSlides(1);
+      }
+    });
+    modalContent.appendChild(nextButton);
 
     const captionContainerDiv = document.createElement('div');
     captionContainerDiv.className = 'caption-container';
@@ -62,73 +83,74 @@ class Lightbox {
     captionContainerDiv.appendChild(captionP);
     modalContent.appendChild(captionContainerDiv);
     document.body.appendChild(this.lightboxModal);
-  }
-
-  updateMediaElements() {
-    // Remove existing media elements
-    const slides = document.querySelectorAll('.slides');
-    slides.forEach((slide) => {
-      slide.remove();
-    });
-
-    // Create new media elements
-    for (let i = 0; i < this.media.length; i++) {
-      const mySlide = document.createElement('div');
-      mySlide.className = 'slides';
-
-      let mediaElement;
-      if (this.media[i].image) {
-        mediaElement = createImageElement(this.media[i]);
-        mySlide.appendChild(mediaElement);
-      } else if (this.media[i].video) {
-        mediaElement = createVideoElement(this.media[i]);
-        mediaElement.controls = true;
-        mySlide.appendChild(mediaElement);
       }
-
-      // Append mySlide to modalContent property
-      this.modalContent.appendChild(mySlide);
+    
+      updateMediaElements() {
+        // Remove existing media elements
+        const slides = document.querySelectorAll('.slides');
+        slides.forEach((slide) => {
+          slide.remove();
+        });
+    
+        // Create new media elements
+        for (let i = 0; i < this.media.length; i++) {
+          const mySlide = document.createElement('div');
+          mySlide.className = 'slides';
+    
+          let mediaElement;
+          if (this.media[i].image) {
+            mediaElement = createImageElement(this.media[i]);
+            mySlide.appendChild(mediaElement);
+          } else if (this.media[i].video) {
+            mediaElement = createVideoElement(this.media[i]);
+            mediaElement.controls = true;
+            mySlide.appendChild(mediaElement);
+          }
+    
+          // Append mySlide to modalContent property
+          this.modalContent.appendChild(mySlide);
+        }
+      }
+    
+      closeModal() {
+        this.lightboxModal.style.display = "none";
+      }
+    
+      plusSlides(n) {
+         // Implement plusSlides logic here
+         this.showSlides(this.slideIndex += n);
+      }
+    
+      currentSlide(n) {
+         // Implement currentSlide logic here
+         this.showSlides(this.slideIndex = n);
+      }
+    
+    showSlides(n) {
+      console.log('showSlides called with n:', n);
+      console.log('this.slideIndex:', this.slideIndex);
+    
+      const slides = document.getElementsByClassName("slides");
+      console.log('slides.length:', slides.length);
+    
+      if (n > slides.length) {this.slideIndex = 1}
+      if (n < 1) {this.slideIndex = slides.length}
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      console.log(slides.length);
+      slides[this.slideIndex-1].style.display = "block";
+      // Update caption
+      const captionP = document.getElementById('caption');
+      captionP.innerHTML = `${this.media[this.slideIndex - 1].title}`;
     }
-  }
-
-  closeModal() {
-    this.lightboxModal.style.display = "none";
-  }
-
-  plusSlides(n) {
-     // Implement plusSlides logic here
-     this.showSlides(this.slideIndex += n);
-  }
-
-  currentSlide(n) {
-     // Implement currentSlide logic here
-     this.showSlides(this.slideIndex = n);
-  }
-
-showSlides(n) {
-  console.log('showSlides called with n:', n);
-  console.log('this.slideIndex:', this.slideIndex);
-
-  const slides = document.getElementsByClassName("slides");
-  console.log('slides.length:', slides.length);
-
-  if (n > slides.length) {this.slideIndex = 1}
-  if (n < 1) {this.slideIndex = slides.length}
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  console.log(slides.length);
-  slides[this.slideIndex-1].style.display = "block";
-  // Update caption
-  const captionP = document.getElementById('caption');
-  captionP.innerHTML = `${this.media[this.slideIndex - 1].title}`;
-}
-  
-}
-// Declare lightbox variable outside of openLightbox function
-let lightbox;
-
-function openLightbox(media,item) {
+      
+    }
+    // Declare lightbox variable outside of openLightbox function
+    let lightbox;
+    
+    function openLightbox(media,item) {
+    
   // Check if lightbox variable is already defined
   if (lightbox) {
     // If it is, update its media and slideIndex properties

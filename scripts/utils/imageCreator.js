@@ -8,6 +8,7 @@ function createImageElement(item) {
     
     // Set the `src` attribute of the `img` element to the path of the image file on the server
     mediaElement.setAttribute("src", `assets/images/${item.image}`);
+    mediaElement.setAttribute("alt", item.title);
     
     // Return the `img` element
     return mediaElement;
