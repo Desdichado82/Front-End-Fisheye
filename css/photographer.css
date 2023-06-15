@@ -129,10 +129,11 @@ form input {
 
 .gallery img,
 .gallery video {
+  border-radius: 5px;
   width: 100%;
   height: 100%;
   max-height: 300px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .infoContainer{
@@ -155,12 +156,14 @@ form input {
 
 
 .lightbox {
+  display:grid;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  justify-content: center;
   overflow: auto;
   background-color: white;
 }
@@ -168,24 +171,26 @@ form input {
 .lightbox .modal-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width:55rem;
   height: 100%;
+  margin:0px;
+  padding:0px;
 }
 
 .modal-content .close {
 
-  position:absolute;
-  background:none;
-  border:none;
-  top:10%;
-  width:auto;
-  padding:16px;
-  margin-top:-50px;
-  color:#901C1C;
-  font-weight:bold;
-  font-size:2.25em;
-  transition:.6s ease
+  position: absolute;
+  background: none;
+  border: none;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: #901C1C;
+  font-weight: bold;
+  font-size: 3.25em;
+  transition: .6s ease;
 }
 
 .lightbox .close:hover,
@@ -196,9 +201,10 @@ form input {
 }
 
 .slides {
+    align-self: center;
     display:none;
-    width:600px;
-    height:500px
+    width: 45rem;
+    height: 36rem;
 }
 
 .lightbox .prev,
@@ -213,30 +219,35 @@ form input {
     margin-top:-50px;
     color:#901C1C;
     font-weight:bold;
-    font-size:1.25em;
+    font-size:2.25em;
     transition:.6s ease
 }
 
 .next {
-    right: calc((100% - 700px) / 2);
+    right: calc((100% - 52rem) / 2);
 }
 
 .prev {
- left: calc((100% - 700px) / 2);
+left:calc((100% - 52rem) / 2);
 }
 .modal-content .close {
-  right: calc((100% - 700px) / 2);
+  right: calc((100% - 52rem) / 2);
+  top: calc((100% - 40rem) / 2);
 }
 
 
 .slides img,
 .slides video {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit : contain; 
+  width: 100%;
+  height:100%;
   display:block; 
   margin-left:auto; 
-  margin-right:auto
+  margin-right:auto;
+  object-fit:fill;
+}
+
+.caption-container{
+  width:45rem;
 }
 
 #caption{
@@ -244,6 +255,17 @@ form input {
   font-weight: 400;
   color:#901C1C;
   margin:0px;
+}
+
+/* heart icon*/
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
 
 

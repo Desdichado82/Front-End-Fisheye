@@ -7,7 +7,7 @@ class Lightbox {
     this.slideIndex =  media.findIndex(m => m.id === item.id) + 1;
     
 
-    const modalContent = document.createElement('div');
+    const modalContent = document.createElement('ul');
     modalContent.className = 'modal-content';
     this.lightboxModal.appendChild(modalContent);
 
@@ -17,7 +17,7 @@ class Lightbox {
      
 
     for (let i = 0; i < media.length; i++) {
-      const mySlide = document.createElement('div');
+      const mySlide = document.createElement('li');
       mySlide.className = 'slides';
 
      
@@ -94,7 +94,7 @@ class Lightbox {
     
         // Create new media elements
         for (let i = 0; i < this.media.length; i++) {
-          const mySlide = document.createElement('div');
+          const mySlide = document.createElement('li');
           mySlide.className = 'slides';
     
           let mediaElement;
@@ -158,7 +158,7 @@ class Lightbox {
     lightbox.slideIndex = media.findIndex(m => m.id === item.id) + 1;
     
     // Show the lightbox modal
-    lightbox.lightboxModal.style.display = "block";
+    lightbox.lightboxModal.style.display = "grid";
     
     // Show the slide for the clicked item
     lightbox.showSlides(lightbox.slideIndex);
@@ -167,7 +167,7 @@ class Lightbox {
     lightbox = new Lightbox(media,item);
 
     // Show the lightbox modal
-    lightbox.lightboxModal.style.display = "block";
+    lightbox.lightboxModal.style.display = "grid";
     
     // Show the slide for the clicked item
     lightbox.showSlides(lightbox.slideIndex);

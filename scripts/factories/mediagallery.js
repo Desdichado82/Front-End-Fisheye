@@ -28,9 +28,11 @@ function mediaFactory(media) {
     const likeContainer = document.createElement('div');
     const likeCounter = document.createElement('span');
     const likeBtn = document.createElement('button');
+    const likeIcon = document.createElement('i');
 
     infoContainer.classList.add('infoContainer');
     likeContainer.classList.add('likeContainer');
+    likeIcon.classList.add('material-symbols-outlined');
 
     likeBtn.setAttribute('aria-label', 'Like button');
 
@@ -59,6 +61,7 @@ function mediaFactory(media) {
       infoContainer.appendChild(likeContainer);
       likeContainer.appendChild(likeCounter);
       likeContainer.appendChild(likeBtn);
+      likeBtn.appendChild(likeIcon);
       article.appendChild(infoContainer);
       gallery.appendChild(article);
     }
