@@ -1,3 +1,5 @@
+/*this code defines a class that can be used to create a lightbox for displaying media.
+ The lightbox can be opened and closed, and its contents can be updated dynamically. */
 class Lightbox {
   constructor(media,item) {
     this.media = media;
@@ -173,3 +175,19 @@ class Lightbox {
     lightbox.showSlides(lightbox.slideIndex);
   }
 }
+
+/*
+This code defines a Lightbox class that can be used to create a lightbox for displaying media.
+ The Lightbox class takes two arguments when creating an instance of it: media and item.
+  The media argument is an array of media objects that will be displayed in the lightbox. 
+  The item argument is the media object that should be displayed first when the lightbox is opened.
+
+The Lightbox class has several methods, including a constructor, an updateMediaElements method, a closeModal method, and a plusSlides method.
+ The constructor is called when creating an instance of the Lightbox class and is used to set up the initial state of the lightbox. 
+ It creates several HTML elements and appends them to the DOM to create the lightbox interface.
+
+The updateMediaElements method is used to update the media elements displayed in the lightbox. 
+It removes any existing media elements and creates new ones based on the current value of the media property. 
+The closeModal method is used to close the lightbox by setting its display style to 'none'. 
+The plusSlides method is used to navigate between slides in the lightbox, but its implementation is not shown in the code you provided.
+*/

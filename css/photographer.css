@@ -136,6 +136,11 @@ form input {
   object-fit: cover;
 }
 
+.likeBtn{
+  background:none;
+  border:none;
+}
+
 .infoContainer{
   display:flex;
   align-items: center;
