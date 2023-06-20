@@ -6,6 +6,8 @@ class Lightbox {
     this.lightboxModal = document.createElement('div');
     this.lightboxModal.id = 'lightbox-modal';
     this.lightboxModal.className = 'lightbox';
+     // Set the `role` attribute of the `lightboxModal` element to `dialog`
+    this.lightboxModal.setAttribute('role', 'dialog');
     this.slideIndex =  media.findIndex(m => m.id === item.id) + 1;
     
 

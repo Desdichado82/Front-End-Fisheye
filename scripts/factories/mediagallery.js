@@ -18,6 +18,9 @@ function mediaFactory(media) {
   const gallery = document.createElement('div');
   gallery.className = 'gallery';
 
+  // Create an instance of the likeButton class 
+  const likeButton = new LikeButton(media);
+
   // Loop through each item in the `media` array
   media.forEach((item) => {
     // Log a message to the console indicating that the function is processing the current `item`
@@ -41,17 +44,22 @@ function mediaFactory(media) {
    
 
     likeBtn.setAttribute('aria-label', 'Like button');
+    likeBtn.setAttribute('data-id', item.id); // Add a data-id attribute to the likeBtn element
 
     // Check if the current `item` has an `image` property
     if (item.image) {
       // If it does, create an `img` element using the `createImageElement` function
       mediaElement = createImageElement(item);
       mediaElement.setAttribute('alt', item.title);
+      mediaElement.setAttribute('aria-label', item.title);
+      mediaElement.setAttribute('tabindex', '0');
       article.appendChild(mediaElement);
     } else if (item.video) {
       // If the current `item` has a `video` property, create a `video` element using the `createVideoElement` function
       mediaElement = createVideoElement(item);
       mediaElement.setAttribute('alt', item.title);
+      mediaElement.setAttribute('aria-label', item.title);
+      mediaElement.setAttribute('tabindex', '0');
       article.appendChild(mediaElement);
     }
 
@@ -61,6 +69,14 @@ function mediaFactory(media) {
         openLightbox(media, item);
       };
 
+      // Add a keyboard event listener to the media element
+  mediaElement.onkeydown = (event) => {
+    // Check if the user pressed the enter key
+    if (event.key === 'Enter') {
+      openLightbox(media, item);
+    }
+  };
+
       title.textContent = item.title;
       likeCounter.textContent = item.likes;
       infoContainer.appendChild(title);
@@ -68,6 +84,16 @@ function mediaFactory(media) {
       likeContainer.appendChild(likeCounter);
       likeContainer.appendChild(likeBtn);
       likeBtn.appendChild(likeIcon);
+// add an event listener to the likeBtn element
+likeBtn.addEventListener('click',()=>{
+  // call the increase likes method and pass in the id of the current media item
+  likeButton.increaseLikes(item.id);
+
+  //update the text content of the likeCounter element to display the new number of likes
+  likeCounter.textContent = item.likes;
+  // save the updated mediaData Array to local storage 
+  localStorage.setItem('mediaData',JSON.stringify(media));
+});
       article.appendChild(infoContainer);
       gallery.appendChild(article);
     }
