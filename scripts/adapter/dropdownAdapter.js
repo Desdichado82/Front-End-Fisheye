@@ -39,7 +39,7 @@ class DropdownAdapter {
     const dropdownBtnText = document.createElement('span');
     dropdownBtnText.id = 'dropdownBtnText';
     this.dropdownBtn.insertBefore(dropdownBtnText, this.toggleArrow);
-    dropdownBtnText.innerText = 'Popularité';
+    //dropdownBtnText.innerText = 'Popularité';
 
     // close dropdown when dom element is clicked 
     document.documentElement.addEventListener("click",
@@ -120,7 +120,14 @@ fetchMediaData().then(media => {
   ];
 
   const options = dropdownAdapter.addOptions(optionsData);
-
+  // Set the default option in the dropdown to "Popularité"
+  const defaultOption = options.find(option => option.id === 'popularité');
+  defaultOption.click();
+const dropdownBtnText = document.getElementById('dropdownBtnText');
+dropdownBtnText.innerText = defaultOption.id;
+defaultOption.classList.add('hidden');
+// Filter media based on default value
+dropdownAdapter.filterMedia(defaultOption.id);
   // Add event listeners to the options
   options.forEach(option => {
     option.addEventListener('click', () => {

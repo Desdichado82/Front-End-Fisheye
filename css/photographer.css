@@ -1,6 +1,6 @@
 #contact_modal {
   display: none;
-  background-color: #FAFAFA;
+  background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   z-index: 1;
   left: 0;
@@ -9,6 +9,8 @@
   height: 100%;
   justify-content: center;
   overflow: auto;
+  transition: opacity .15s linear;
+  padding:2rem;
 }
 
 .photograph-header {
@@ -16,7 +18,7 @@
   height: 300px;
   margin: 0 100px;
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
   justify-content: space-around;
   align-items: center;
 }
@@ -25,9 +27,9 @@
   font-size: 20px;
   font-weight: bold;
   color: white;
-  padding: 11px;
+  padding: 12px 20px;
   width: 170px;
-  height: 70px;
+  height: auto;
   border: none;
   background-color: #901C1C;
   border-radius: 5px;
@@ -37,13 +39,16 @@
 .modal {
   border-radius: 5px;
   background-color: #DB8876;
-  width: 50%;
+  width: 40%;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: auto;
+  margin: 1.75rem auto;
+  box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.25);
+
 }
 
 .modal header {
@@ -56,10 +61,12 @@
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 2.5rem;
   font-weight: normal;
   text-align: center;
+  overflow-wrap: break-word;
 }
+
 
 form {
   display: flex;
@@ -78,18 +85,23 @@ form div {
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 26px;
+  margin:0px;
 }
 
 form input {
   width: 100%;
-  height: 68px;
+  height: auto;
   border: none;
   border-radius: 5px;
+  padding: 15px;
+
 }
 
 input[type="text"], input[type="email"], textarea {
   border: 2px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
@@ -98,7 +110,9 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 
 form textarea{
   width: 100%;
+  min-height: calc(1.5em + 0.75rem + 2px);
   border-radius: 5px;
+  margin-bottom:15px;
 }
 
 .photograph-header img {
@@ -110,15 +124,19 @@ form textarea{
 }
 /* Give each child element a different order value */
 .photograph-header > :nth-child(1) {
-  order: 2;
-}
-
-.photograph-header > :nth-child(2) {
   order: 1;
 }
 
-.photograph-header > :nth-child(3) {
+.photograph-header > :nth-child(2) {
   order: 3;
+}
+
+.photograph-header > :nth-child(3) {
+  order: 2;
+}
+
+.photograph-header > :nth-child(4) {
+  order: 4;
 }
 
 .photograph-header h2{
@@ -172,6 +190,8 @@ form textarea{
 
 .likeContainer{
   color:#901C1C;
+  display: flex;
+  align-items: center;
 }
 
 .likeContainer p,.likeContainer button{
@@ -277,6 +297,7 @@ left:calc((100% - 52rem) / 2);
 
 .caption-container{
   width:45rem;
+  order:1;
 }
 
 #caption{
@@ -313,23 +334,30 @@ left:calc((100% - 52rem) / 2);
   display: inline-block;
 }
 
-
-@media only screen and (max-width :300px) {
-    .lightbox .prev,.lightbox .next,.lightbox captionText {
-        font-size:.6875em
-    }
+.stickyWrapper{
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  padding:5px;
+  border-radius: 5px;
+  background-color: #DB8876;
+  color: #312E2E;
+  font-weight: bold;
+  width: 200px; /* Set the width of the sticky element */
+  margin-bottom: 0px; /* Add bottom margin */
+  margin-right: 20px; /* Add right margin */
+  float:right;
+ 
 }
 
-@media only screen and (max-width :700px) {
-.prev,
-.next{
-left :0 ;
-right :0 ;
-}
+.stickyWrapper > .bxs-heart:after {
+  content: "\ede2";
 }
 
-
-
+.stickyWrapper > .bxs-heart:before {
+  display: none;
+}
 
 #DropBtn {
   width: 9rem;
@@ -399,4 +427,18 @@ right :0 ;
 
 .dropdown a.hidden {
   display: none;
+}
+
+@media only screen and (max-width :300px) {
+  .lightbox .prev,.lightbox .next,.lightbox captionText {
+      font-size:.6875em
+  }
+}
+
+@media only screen and (max-width :700px) {
+.prev,
+.next{
+left :0 ;
+right :0 ;
+}
 }

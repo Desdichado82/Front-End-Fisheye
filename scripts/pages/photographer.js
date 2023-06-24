@@ -50,11 +50,14 @@ dataFetcher.fetchData('photographers')
     console.log('totalLikes:', totalLikes);
 
     // Create an element to display the total number of likes
-    const totalLikesElement = document.createElement('p');
-    totalLikesElement.textContent = `Total Likes: ${totalLikes}`;
-
+    const stickyContainer = document.createElement('div');
+    const totalLikesElement = document.createElement('span');
+    totalLikesElement.classList.add('bx','bxs-heart');
+    totalLikesElement.textContent = `${totalLikes}`;
+    stickyContainer.appendChild(totalLikesElement);
+    stickyContainer.classList = 'stickyWrapper';
     // Append the totalLikesElement to the page
-    document.body.appendChild(totalLikesElement);
+    document.body.appendChild(stickyContainer);
 
     // Define an observer that will update the total number of likes displayed on the page
     const totalLikesObserver = {
