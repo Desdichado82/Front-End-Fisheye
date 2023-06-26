@@ -35,7 +35,7 @@ dataFetcher.fetchData('photographers')
     console.log('mediaData:', mediaData);
 
     // create a media object using the factory function and pass in the media data
-    mediaFactory(mediaData);
+    //mediaFactory(mediaData);
 
     // Create an instance of the LikeButton class
     const likeButton = new LikeButton(mediaData);

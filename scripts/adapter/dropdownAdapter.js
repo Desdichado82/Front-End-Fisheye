@@ -55,10 +55,12 @@ class DropdownAdapter {
   filterMedia(selectedValue) {
       if (selectedValue === 'popularité') {
         mediaData.sort((a, b) => b.likes - a.likes);
+        console.log('this is the data for popularity',mediaData)
       } else if (selectedValue === 'date') {
         mediaData.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (selectedValue === 'titre') {
         mediaData.sort((a, b) => a.title.localeCompare(b.title));
+        console.log('this is the filterdata',mediaData)
       }
 
       // Update lightbox with filtered media
@@ -102,6 +104,7 @@ async function fetchMediaData() {
 // Assign value to mediaData variable
 fetchMediaData().then(media => {
   mediaData = media;
+  console.log('this is the metada',mediaData);
 
   // Create an instance of the DropdownAdapter class
   const dropdownAdapter = new DropdownAdapter(
@@ -127,6 +130,7 @@ const dropdownBtnText = document.getElementById('dropdownBtnText');
 dropdownBtnText.innerText = defaultOption.id;
 defaultOption.classList.add('hidden');
 // Filter media based on default value
+console.log('filterMedia function called')
 dropdownAdapter.filterMedia(defaultOption.id);
   // Add event listeners to the options
   options.forEach(option => {
