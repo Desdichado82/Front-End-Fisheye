@@ -59,29 +59,36 @@ dataFetcher.fetchData('photographers')
     // Append the totalLikesElement to the page
     document.body.appendChild(stickyContainer);
 
-    // Define an observer that will update the total number of likes displayed on the page
+    // Create the totalLikesObserver object
     const totalLikesObserver = {
       update: (likes) => {
-        // Get the current total number of likes
-        const totalLikes = likeButton.getTotalLikes();
-
+        console.log('totalLikesObserver.update called with likes:', likes);
+        console.log('likeButton.totalLikes:', likeButton.totalLikes);
+    
         // Update the totalLikesElement with the new total number of likes
-        totalLikesElement.textContent = `${totalLikes}`;
+        totalLikesElement.textContent = `${likeButton.totalLikes}`;
+    
+        console.log('totalLikesElement.textContent:', totalLikesElement.textContent);
       }
     };
 
-    // Add the totalLikesObserver as an observer of the likeButtonSubject
-    likeButton.addObserver(totalLikesObserver);
+// Add the totalLikesObserver as an observer of the likeButton instance
+likeButton.addObserver(totalLikesObserver);
+console.log('is called',totalLikesObserver);
 
-    // Add an event listener to each like button to increment its likes property when clicked
-    document.querySelectorAll('.like-button').forEach(button => {
-      button.addEventListener('click', event => {
-        // Get the id of the media object associated with the clicked like button
-        const id = parseInt(event.target.dataset.id, 10);
+// Add an event listener to each like button to increment its likes property when clicked
+document.querySelectorAll('.like-button').forEach(button => {
+  button.addEventListener('click', event => {
+    // Get the id of the media object associated with the clicked like button
+    const id = parseInt(event.target.dataset.id, 10);
 
-        // Increment the likes property of the media object
-        likeButton.increaseLikes(id);
-      });
-    });
+    // Increment the likes property of the media object
+    likeButton.increaseLikes(id);
+
+    // Notify all observers that a like button has been clicked
+    likeButton.notify();
+
+  });
+});
   })
   .catch((error) => console.error(error)); // handle any errors
