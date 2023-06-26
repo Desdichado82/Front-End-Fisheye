@@ -66,7 +66,7 @@ dataFetcher.fetchData('photographers')
         const totalLikes = likeButton.getTotalLikes();
 
         // Update the totalLikesElement with the new total number of likes
-        totalLikesElement.textContent = `Total Likes: ${totalLikes}`;
+        totalLikesElement.textContent = `${totalLikes}`;
       }
     };
 

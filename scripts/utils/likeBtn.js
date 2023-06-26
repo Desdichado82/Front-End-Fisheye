@@ -21,6 +21,7 @@ class LikeButton extends Subject {
     this.media.forEach(item => {
       totalLikes += item.likes;
     });
+
     return totalLikes;
   }
 }
