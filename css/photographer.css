@@ -1,3 +1,10 @@
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+
+}
+
+
 #contact_modal {
   display: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -145,6 +152,10 @@ form textarea{
   font-weight: 400;
   color:#D3573C;
   margin:0px;
+}
+
+.photograph-header p{
+ margin:0px;
 }
 
 .location{
@@ -337,6 +348,9 @@ left:calc((100% - 52rem) / 2);
 .stickyWrapper{
   position: -webkit-sticky;
   position: sticky;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   bottom: 0;
   right: 0;
   padding:5px;
@@ -349,6 +363,11 @@ left:calc((100% - 52rem) / 2);
   margin-right: 20px; /* Add right margin */
   float:right;
  
+}
+
+.stickyWrapper > :nth-child(1) {
+  order: 2;
+  font-size: 1.2rem;
 }
 
 .stickyWrapper > .bxs-heart:after {
@@ -381,7 +400,8 @@ left:calc((100% - 52rem) / 2);
 }
 
 .bx {
-  font-size: 2.1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .dropdown {
@@ -412,6 +432,7 @@ left:calc((100% - 52rem) / 2);
 .dropdown a:hover {
   background-color: var(--color);
   color: white;
+  background-color: #6B1313;
 }
 
 .show {

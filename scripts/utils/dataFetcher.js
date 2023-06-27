@@ -29,6 +29,12 @@ class DataFetcher {
       console.log('filtered media data:', media);
       return media;
     }
+
+    async fetchPhotographersData() {
+      const data = await this.fetchData('photographers');
+      const photographer = data.find((photographer) => photographer.id == this.id);
+      return photographer;
+    }
   
     filterArtistData(photographersArray, id) {
       return photographersArray.filter((artist) => artist.id == id)[0];
