@@ -31,7 +31,9 @@
       <div class="modal">
         <header>
           <h2 id="modal_title">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0" alt="Close modal"/>
+          <button class="close_button" onclick="closeForm()" tabindex="0" aria-label="Close modal">
+            <img src="assets/icons/close.svg" alt="Close modal"/>
+          </button>
         </header>
         <form>
           <div>
@@ -67,8 +69,12 @@
     <script src="./scripts/decorator/displayProfile.js"></script>
     <script src="./scripts/factories/mediagallery.js"></script>
     <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/utils/contactAccessibility.js"></script>
     <script src="./scripts/utils/lightbox.js"></script>
+    <script src="./scripts/utils/accessibility.js"></script>
+
     <script src="./scripts/adapter/dropdownAdapter.js"></script>
+    <script src="./scripts/utils/dropdownAccessibility.js"></script>
     <script src="./scripts/utils/likeBtn.js"></script>
    
    

@@ -3,7 +3,7 @@ function displayModal() {
 	modal.style.display = "block";
 }
 
-function closeModal() {
+function closeForm() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
@@ -11,11 +11,7 @@ function closeModal() {
 const contactButton = document.querySelector('.contact_button');
 contactButton.addEventListener('click', displayModal);
 
-contactButton.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      displayModal();
-    }
-  });
+
 
   const form = document.querySelector('form');
   form.addEventListener('submit', (event) => {

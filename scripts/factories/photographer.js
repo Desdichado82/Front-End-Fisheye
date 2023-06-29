@@ -36,7 +36,7 @@ function photographerFactory(data) {
     location.classList.add('location');
     tagline_tag.textContent = tagline;
     tagline_tag.classList.add('tagline');
-    price_tag.textContent = `${price}€/jour'`;
+    price_tag.textContent = `${price}€/jour`;
     price_tag.classList.add('price');
 
     // Append all of these elements together in a hierarchy that represents a user card for this photographer

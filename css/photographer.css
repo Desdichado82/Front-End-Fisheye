@@ -43,6 +43,13 @@ body {
   cursor: pointer;
 }
 
+.close_button {
+  
+ background: none;
+ border:none;
+  cursor: pointer;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #DB8876;
