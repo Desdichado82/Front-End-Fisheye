@@ -1,6 +1,6 @@
 /*this code defines a class that can be used to create a lightbox for displaying media.
  The lightbox can be opened and closed, and its contents can be updated dynamically. */
-class Lightbox {
+ class Lightbox {
   constructor(media,item) {
     this.media = media;
     this.lightboxModal = document.createElement('div');
@@ -153,30 +153,33 @@ class Lightbox {
     // Declare lightbox variable outside of openLightbox function
     let lightbox;
     
-    function openLightbox(media,item) {
+    function openLightbox(media, item) {
+      // Check if lightbox variable is already defined
+      if (lightbox) {
+        // If it is, update its media and slideIndex properties
+        lightbox.media = media;
+        lightbox.slideIndex = media.findIndex((m) => m.id === item.id) + 1;
     
-  // Check if lightbox variable is already defined
-  if (lightbox) {
-    // If it is, update its media and slideIndex properties
-    lightbox.media = media;
-    lightbox.slideIndex = media.findIndex(m => m.id === item.id) + 1;
+        // Show the lightbox modal
+        lightbox.lightboxModal.style.display = 'grid';
     
-    // Show the lightbox modal
-    lightbox.lightboxModal.style.display = "grid";
+        // Show the slide for the clicked item
+        lightbox.showSlides(lightbox.slideIndex);
+      } else {
+        // If lightbox variable is not defined, create a new instance of the Lightbox class with the media array and item as arguments
+        lightbox = new Lightbox(media, item);
     
-    // Show the slide for the clicked item
-    lightbox.showSlides(lightbox.slideIndex);
-  } else {
-    // If lightbox variable is not defined, create a new instance of the Lightbox class with the media array and item as arguments
-    lightbox = new Lightbox(media,item);
-
-    // Show the lightbox modal
-    lightbox.lightboxModal.style.display = "grid";
+        // Show the lightbox modal
+        lightbox.lightboxModal.style.display = 'grid';
     
-    // Show the slide for the clicked item
-    lightbox.showSlides(lightbox.slideIndex);
-  }
-}
+        // Show the slide for the clicked item
+        lightbox.showSlides(lightbox.slideIndex);
+      }
+    
+      // Initialize accessibility script
+      initializeAccessibility();
+    }
+    
 
 /*
 This code defines a Lightbox class that can be used to create a lightbox for displaying media.

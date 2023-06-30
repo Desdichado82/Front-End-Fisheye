@@ -2,6 +2,29 @@
 The adapter class encapsulates the logic for creating and managing the dropdown filter,
  while allowing it to be customized using arguments passed to its constructor and methods. */
 
+ // dropdownAdapter.js
+ function setupDropdownKeyboardNavigation(options) {
+  options.forEach((option, index) => {
+    option.addEventListener('keydown', event => {
+      if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        console.log('ArrowUp or ArrowLeft pressed');
+        const prevIndex = index === 0 ? options.length - 1 : index - 1;
+        options[prevIndex].focus();
+      } else if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        console.log('ArrowDown or ArrowRight pressed');
+        const nextIndex = index === options.length - 1 ? 0 : index + 1;
+        options[nextIndex].focus();
+      } else if (event.key === 'Enter') {
+        event.preventDefault();
+        console.log('Enter pressed');
+        option.click();
+      }
+    });
+  });
+}
+
 class DropdownAdapter {
   constructor(dropContainerId, mediaData, lightbox, mediaFactory, DataFetcher) {
     this.dropContainer = document.getElementById(dropContainerId);
@@ -16,22 +39,22 @@ class DropdownAdapter {
 
     this.toggleArrow = document.createElement('i');
     this.toggleArrow.id = 'arrow';
-    this.toggleArrow.classList.add('bx', 'bx-chevron-down'); 
+    this.toggleArrow.classList.add('bx', 'bx-chevron-down');
     this.dropdownBtn.appendChild(this.toggleArrow);
 
     this.dropdownMenu = document.createElement('div');
     this.dropdownMenu.id = 'dropdown';
-    this.dropdownMenu.className = "dropdown";
+    this.dropdownMenu.className = 'dropdown';
     this.dropdownWrapper.appendChild(this.dropdownMenu);
 
-    // Toggle Dropdown function 
+    // Toggle Dropdown function
     const toggleDropdown = () => {
       this.dropdownMenu.classList.toggle('show');
-      this.toggleArrow.classList.toggle("arrow");
+      this.toggleArrow.classList.toggle('arrow');
     };
 
-    // toggle dropdown open . close when dropdown button is clicked 
-    this.dropdownBtn.addEventListener("click",function(e){
+    // toggle dropdown open . close when dropdown button is clicked
+    this.dropdownBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       toggleDropdown();
     });
@@ -39,28 +62,24 @@ class DropdownAdapter {
     const dropdownBtnText = document.createElement('span');
     dropdownBtnText.id = 'dropdownBtnText';
     this.dropdownBtn.insertBefore(dropdownBtnText, this.toggleArrow);
-    //dropdownBtnText.innerText = 'Popularité';
 
-    // close dropdown when dom element is clicked 
-    document.documentElement.addEventListener("click",
-      () => {
-        if(this.dropdownMenu.classList.contains("show")){
-          toggleDropdown();
-        }
+    // close dropdown when dom element is clicked
+    document.documentElement.addEventListener('click', () => {
+      if (this.dropdownMenu.classList.contains('show')) {
+        toggleDropdown();
       }
-    );
-  }
+    });
 
-  // Filter media based on selected value
-  filterMedia(selectedValue) {
+    // Filter media based on selected value
+    this.filterMedia = (selectedValue) => {
       if (selectedValue === 'popularité') {
         mediaData.sort((a, b) => b.likes - a.likes);
-        console.log('this is the data for popularity',mediaData)
+        console.log('this is the data for popularity', mediaData);
       } else if (selectedValue === 'date') {
         mediaData.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (selectedValue === 'titre') {
         mediaData.sort((a, b) => a.title.localeCompare(b.title));
-        console.log('this is the filterdata',mediaData)
+        console.log('this is the filterdata', mediaData);
       }
 
       // Update lightbox with filtered media
@@ -71,21 +90,24 @@ class DropdownAdapter {
 
       // Update Gallery with filtered media
       mediaFactory(mediaData);
-  }
+    };
 
-  addOptions(optionsData) {
-    const options = [];
+    // Add options to the dropdown menu
+    this.addOptions = (optionsData) => {
+      const options = [];
 
-    optionsData.forEach(optionData => {
-      const option = document.createElement('a');
-      option.id = optionData.id;
-      option.innerText = optionData.text;
-      option.setAttribute('aria-label', optionData.ariaLabel);
-      this.dropdownMenu.appendChild(option);
-      options.push(option);
-    });
+      optionsData.forEach(optionData => {
+        const option = document.createElement('a');
+        option.id = optionData.id;
+        option.innerText = optionData.text;
+        option.setAttribute('aria-label', optionData.ariaLabel);
+        option.setAttribute('tabindex', '0'); // Add tabindex attribute
+        this.dropdownMenu.appendChild(option);
+        options.push(option);
+      });
 
-    return options;
+      return options;
+    };
   }
 }
 
@@ -104,7 +126,7 @@ async function fetchMediaData() {
 // Assign value to mediaData variable
 fetchMediaData().then(media => {
   mediaData = media;
-  console.log('this is the metada',mediaData);
+  console.log('this is the metadata', mediaData);
 
   // Create an instance of the DropdownAdapter class
   const dropdownAdapter = new DropdownAdapter(
@@ -117,21 +139,24 @@ fetchMediaData().then(media => {
 
   // Add options to the dropdown menu
   const optionsData = [
-    {id: "popularité", text: "Popularité", ariaLabel: "Filter by popularity"},
-    {id: "date", text: "Date", ariaLabel: "Filter by date"},
-    {id: "titre", text: "Titre", ariaLabel: "Filter by title"}
+    { id: 'popularité', text: 'Popularité', ariaLabel: 'Filter by popularity' },
+    { id: 'date', text: 'Date', ariaLabel: 'Filter by date' },
+    { id: 'titre', text: 'Titre', ariaLabel: 'Filter by title' }
   ];
 
   const options = dropdownAdapter.addOptions(optionsData);
+
   // Set the default option in the dropdown to "Popularité"
   const defaultOption = options.find(option => option.id === 'popularité');
   defaultOption.click();
-const dropdownBtnText = document.getElementById('dropdownBtnText');
-dropdownBtnText.innerText = defaultOption.id;
-defaultOption.classList.add('hidden');
-// Filter media based on default value
-console.log('filterMedia function called')
-dropdownAdapter.filterMedia(defaultOption.id);
+
+  const dropdownBtnText = document.getElementById('dropdownBtnText');
+  dropdownBtnText.innerText = defaultOption.id;
+  defaultOption.classList.add('hidden');
+
+  // Filter media based on default value
+  dropdownAdapter.filterMedia(defaultOption.id);
+
   // Add event listeners to the options
   options.forEach(option => {
     option.addEventListener('click', () => {
@@ -147,7 +172,12 @@ dropdownAdapter.filterMedia(defaultOption.id);
       dropdownAdapter.filterMedia(option.id);
     });
   });
+
+  // Call the setupDropdownKeyboardNavigation function
+  setupDropdownKeyboardNavigation(options);
 });
+
+
 
 
 /*

@@ -17,6 +17,7 @@ function mediaFactory(media) {
 
   const gallery = document.createElement('div');
   gallery.className = 'gallery';
+  gallery.id = 'gallery-container';
 
   // Create an instance of the likeButton class 
   const likeButton = new LikeButton(media);
