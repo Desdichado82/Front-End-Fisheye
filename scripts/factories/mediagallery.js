@@ -9,7 +9,7 @@ function mediaFactory(media) {
   const main = document.getElementById('main');
   console.log('main element:', main);
 
-  // clear existing gallery
+  // Clear existing gallery
   const existingGallery = main.querySelector('.gallery');
   if (existingGallery) {
     main.removeChild(existingGallery);
@@ -41,11 +41,10 @@ function mediaFactory(media) {
     infoContainer.classList.add('infoContainer');
     likeContainer.classList.add('likeContainer');
     likeBtn.className = 'likeBtn';
-    likeIcon.classList.add('bx','bxs-heart');
-   
+    likeIcon.classList.add('bx', 'bxs-heart');
 
     likeBtn.setAttribute('aria-label', 'Like button');
-    likeBtn.setAttribute('data-id', item.id); // Add a data-id attribute to the likeBtn element
+    likeBtn.setAttribute('data-id', item.id);
 
     // Check if the current `item` has an `image` property
     if (item.image) {
@@ -71,12 +70,12 @@ function mediaFactory(media) {
       };
 
       // Add a keyboard event listener to the media element
-  mediaElement.onkeydown = (event) => {
-    // Check if the user pressed the enter key
-    if (event.key === 'Enter') {
-      openLightbox(media, item);
-    }
-  };
+      mediaElement.onkeydown = (event) => {
+        // Check if the user pressed the enter key
+        if (event.key === 'Enter') {
+          openLightbox(media, item);
+        }
+      };
 
       title.textContent = item.title;
       likeCounter.textContent = item.likes;
@@ -85,24 +84,29 @@ function mediaFactory(media) {
       likeContainer.appendChild(likeCounter);
       likeContainer.appendChild(likeBtn);
       likeBtn.appendChild(likeIcon);
-// add an event listener to the likeBtn element
-likeBtn.addEventListener('click',()=>{
-  // call the increase likes method and pass in the id of the current media item
-  likeButton.increaseLikes(item.id);
 
-  //update the text content of the likeCounter element to display the new number of likes
-  likeCounter.textContent = item.likes;
-  // save the updated mediaData Array to local storage 
-  localStorage.setItem('mediaData',JSON.stringify(media));
-});
+      // Add an event listener to the likeBtn element
+      likeBtn.addEventListener('click', () => {
+        // Call the increase likes method and pass in the id of the current media item
+        likeButton.increaseLikes(item.id);
+
+        // Update the text content of the likeCounter element to display the new number of likes
+        likeCounter.textContent = item.likes;
+
+        // Save the updated mediaData Array to local storage 
+        localStorage.setItem('mediaData', JSON.stringify(media));
+      });
+
       article.appendChild(infoContainer);
       gallery.appendChild(article);
     }
   });
+
   main.appendChild(gallery);
 
   return gallery;
 }
+
 
 /*
 This code defines a mediaFactory function that takes an array of media objects as an argument and returns a gallery element. 
