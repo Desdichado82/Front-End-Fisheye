@@ -14,7 +14,7 @@ class LikeButton extends Subject {
         console.log('item.likes incremented:', item.likes);
         this.totalLikes++;
         console.log('this.totalLikes incremented:', this.totalLikes);
-
+        
         // Notify all observers that the likes property has been incremented
         this.notify(item.likes);
       }
@@ -34,7 +34,12 @@ class LikeButton extends Subject {
   notify(data) {
     this.observers.forEach(observer => observer.update(data));
   }
+
+  notify(data) {
+    super.notify(data);
+  }
 }
+
 
 
 

@@ -25,21 +25,22 @@ form.addEventListener('submit', (event) => {
   const messageInput = document.querySelector('#message');
   
   if (!firstNameInput.checkValidity()) {
-    firstNameInput.nextElementSibling.textContent = 'Please enter a valid first name';
+    firstNameInput.nextElementSibling.textContent = 'Veuillez saisir un prénom valide';
     return;
   }
   
   if (!lastNameInput.checkValidity()) {
-    lastNameInput.nextElementSibling.textContent = 'Please enter a valid last name';
+    lastNameInput.nextElementSibling.textContent = 'Veuillez saisir un nom de famille valide';
     return;
   }
   
   if (!emailInput.checkValidity()) {
-    emailInput.nextElementSibling.textContent = 'Please enter a valid email';
+    emailInput.nextElementSibling.textContent = 'Veuillez saisir un courriel valide';
     return;
   }
   
   const formData = [firstNameInput.value, lastNameInput.value, emailInput.value, messageInput.value];
+  console.log(formData);
   localStorage.setItem('formData', JSON.stringify(formData));
   
   fetch('/submit-form', {
@@ -48,6 +49,6 @@ form.addEventListener('submit', (event) => {
   }).then(response => {
     // handle response
      // handle response
-     closeModal();
+     closeForm();
   });
 });

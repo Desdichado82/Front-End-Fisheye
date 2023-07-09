@@ -1,14 +1,5 @@
     
 
-
-    
-    /*The spread operator (...) is a JavaScript expression that allows an iterable such as an array or
-     a string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected.
-      It can also be used to expand an object in places where zero or more key-value pairs (for object literals) are expected.
-
-    In the code you provided, the spread operator is used to create a new array by spreading the original photographers array three times:
-    [...photographers, ...photographers, ...photographers]. 
-    This creates a new array that contains three copies of the original photographers array. */
     async function getPhotographers() {
       try {
         // Fetch data from the JSON file
@@ -30,18 +21,7 @@
       }
     }
 
-    /**
-     This is an async JavaScript function named displayData that takes an array of photographers as an argument. 
-     The function uses the querySelector method to select the first element in the document with the class name 
-     photographer_section and assigns it to the variable photographersSection.
-
-    The function then uses the forEach method to iterate over each photographer in the photographers array. 
-    For each photographer, the function calls the previously defined photographerFactory function and passes it 
-    the current photographer object. The photographerFactory function returns an object that contains a method named getUserCardDOM. 
-    This method is called and its return value (an HTML article element) is assigned to the variable userCardDOM.
-
-    The function then uses the appendChild method to append the userCardDOM element to the photographersSection element.
-     */
+   
     async function displayData(photographers) {
         console.log('Data passed to displayData:', photographers);
         const photographersSection = document.querySelector(".photographer_section");
@@ -53,16 +33,7 @@
         });
     }
 
-    /*
-    This is an async JavaScript function named init. 
-    The function uses the await keyword to call the previously defined getPhotographers 
-    function and wait for it to complete. The getPhotographers function returns an object
-    with a property named photographers, which is destructured and assigned to a variable with the same name.
 
-    The function then calls the previously defined displayData function and passes it the photographers array as an argument.
-
-    After the init function is defined, it is immediately called.
-    */
 
     async function init() {
         // Récupère les datas des photographes
@@ -75,6 +46,34 @@
     }
     
     init();
+
+    /*
+    The given code consists of three async JavaScript functions: getPhotographers, displayData, and init. Let's summarize each of them:
+
+getPhotographers:
+
+This function fetches data from a JSON file called "photographers.json" using the fetch API.
+It checks if the response status is not okay and throws an error if that's the case.
+It parses the response data as JSON using the response.json() method.
+The parsed data is logged to the console.
+Finally, it returns the fetched data.
+displayData:
+
+This function takes an array of photographers as an argument.
+It selects the first element in the document with the class name "photographer_section" using the querySelector method and assigns it to the variable photographersSection.
+It iterates over each photographer in the photographers array using the forEach method.
+For each photographer, it calls the photographerFactory function (not provided in the given code) and passes the current photographer object as an argument.
+The photographerFactory function returns an object that contains a method named getUserCardDOM.
+It calls the getUserCardDOM method and assigns the returned HTML article element to the variable userCardDOM.
+It appends the userCardDOM element to the photographersSection element using the appendChild method.
+init:
+
+This function is called immediately after its definition.
+It first calls the getPhotographers function using the await keyword and assigns the returned object to the variable data.
+The photographers and media properties of the data object are destructured and assigned to respective variables.
+It calls the displayData function and passes the photographers array as an argument.
+Overall, the code fetches data from a JSON file, displays the fetched data by generating HTML elements for each photographer, and initializes the process by calling the init function.
+    */
 
 
     

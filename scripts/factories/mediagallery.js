@@ -109,20 +109,21 @@ function mediaFactory(media) {
 
 
 /*
-This code defines a mediaFactory function that takes an array of media objects as an argument and returns a gallery element. 
-The mediaFactory function creates a new div element with the class name 'gallery', 
-then loops through each item in the media array and creates an article element for each one.
+This code defines a mediaFactory function responsible for creating and displaying a gallery of media items on a web page. Here's a summary of what the code does:
 
-Inside the loop, the function checks if the current item has an image property. 
-If it does, it calls the createImageElement function to create an img element for the image.
-If the current item has a video property instead, it calls the createVideoElement function to create a video element for the video.
-The created media element is then appended to the article element.
-
-The function also creates several other elements inside the loop, 
-including a div element with the class name 'infoContainer', a p element for the title of the media item,
-and a div element with the class name 'likeContainer'. These elements are used to display information about the media item,
-such as its title and number of likes. 
-The function also adds an event listener to the media element that calls the openLightbox function when clicked.
-
-After all media items have been processed, the function appends the gallery element to the 'main' element in the DOM and returns it.
+The mediaFactory function takes a media parameter, which is an array of media objects.
+It performs the following steps:
+Retrieves the main element from the HTML document.
+Clears any existing gallery by removing the current gallery element if it exists.
+Creates a new gallery element to hold the media items.
+Creates an instance of the LikeButton class.
+Iterates through each item in the media array.
+For each item, it creates the necessary DOM elements (such as article, infoContainer, title, likeContainer, likeCounter, likeBtn, and likeIcon).
+Checks if the item has an image property and creates an img element using the createImageElement function if it does.
+If the item has a video property, it creates a video element using the createVideoElement function.
+Attaches event listeners to the media elements for click and keyboard events to open a lightbox.
+Adds event listener to the likeBtn element to increase the likes of the current media item when clicked, updates the like counter, and saves the updated media data to local storage.
+Appends the created elements to the article, infoContainer, and gallery.
+Finally, the gallery element is appended to the main element, and the gallery element is returned.
+The mediaFactory function encapsulates the logic for creating the gallery of media items dynamically. It handles the creation of DOM elements, event handling, and appending the elements to the appropriate parent elements. The function also integrates with the LikeButton class and handles the update of like counts and local storage.
 */
