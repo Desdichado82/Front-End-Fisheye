@@ -30,7 +30,7 @@ dataFetcher.fetchData('photographers')
     stickyContainer.classList = 'stickyWrapper';
     document.body.appendChild(stickyContainer);
 
-    prixparJour = document.createElement('span');
+    const prixparJour = document.createElement('span');
     prixparJour.textContent = `${price}€ /Jour `;
     stickyContainer.appendChild( prixparJour);
 
@@ -65,7 +65,7 @@ dataFetcher.fetchData('photographers')
     console.log('totalLikes:', totalLikes);
 
     // Create an element to display the total number of likes
-    stickyWrapper = document.querySelector('.stickyWrapper');
+    const stickyWrapper = document.querySelector('.stickyWrapper');
     const totalLikesElement = document.createElement('span');
     totalLikesElement.classList.add('bx','bxs-heart');
     totalLikesElement.textContent = `${totalLikes}`;

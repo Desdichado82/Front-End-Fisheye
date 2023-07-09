@@ -204,3 +204,4 @@ It removes any existing media elements and creates new ones based on the current
 The closeModal method is used to close the lightbox by setting its display style to 'none'. 
 The plusSlides method is used to navigate between slides in the lightbox, but its implementation is not shown in the code you provided.
 */
+
