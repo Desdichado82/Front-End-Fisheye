@@ -1,42 +1,43 @@
 // Define a decorator function that takes a photographerFactory instance and additional arguments for the necessary variables
-function displayProfileDecorator(photographerFactory, name, portrait, city, country, tagline) {
-    // Define the displayProfile function
-    function displayProfile() {
-      // Implement the displayProfile logic here
-      const photographersHeader = document.querySelector('.photograph-header');
-      const info = document.createElement('div');
-      const picture = `assets/photographers/${portrait}`;
-      const profile = document.createElement('img');
-      const nameTag = document.createElement('h2');
-      const address = `${city}, ${country}`;
-      const locationTag = document.createElement('p');
-      const taglineTag = document.createElement('p');
-  
-      profile.setAttribute('src', picture);
-      // Set the `alt` attribute of the `profile` element to an empty string
-      profile.setAttribute('alt', '');
-  
-      nameTag.textContent = name;
-      locationTag.textContent = address;
-      taglineTag.textContent = tagline;
-  
-      locationTag.className = 'location';
-  
-      photographersHeader.appendChild(info);
-      photographersHeader.appendChild(profile);
-  
-      info.appendChild(nameTag);
-      info.appendChild(locationTag);
-      info.appendChild(taglineTag);
-    }
-  
-    // Add the displayProfile function to the photographerFactory instance
-    photographerFactory.displayProfile = displayProfile;
-  }
+const displayProfileDecorator = (photographerFactory, name, portrait, city, country, tagline) => {
+  // Define the displayProfile function
+  const displayProfile = () => {
+    // Implement the displayProfile logic here
+    const photographersHeader = document.querySelector('.photograph-header');
+    const info = document.createElement('div');
+    const picture = `assets/photographers/${portrait}`;
+    const profile = document.createElement('img');
+    const nameTag = document.createElement('h2');
+    const address = `${city}, ${country}`;
+    const locationTag = document.createElement('p');
+    const taglineTag = document.createElement('p');
+
+    profile.src = picture;
+    // Set the `alt` attribute of the `profile` element to an empty string
+    profile.alt = '';
+
+    nameTag.textContent = name;
+    locationTag.textContent = address;
+    taglineTag.textContent = tagline;
+
+    locationTag.className = 'location';
+
+    photographersHeader.appendChild(info);
+    photographersHeader.appendChild(profile);
+
+    info.appendChild(nameTag);
+    info.appendChild(locationTag);
+    info.appendChild(taglineTag);
+  };
+
+  // Add the displayProfile function to the photographerFactory instance
+  photographerFactory.displayProfile = displayProfile;
+};
 
 
-  /*
-  This code defines a decorator function called displayProfileDecorator that takes a photographerFactory instance and additional arguments related to a photographer's profile (name, portrait, city, country, tagline).
+
+/*
+This code defines a decorator function called displayProfileDecorator that takes a photographerFactory instance and additional arguments related to a photographer's profile (name, portrait, city, country, tagline).
 
 Inside the displayProfileDecorator function:
 
@@ -47,10 +48,9 @@ It sets the src attribute of the profile image to the specified portrait variabl
 It assigns the provided values (name, address, and tagline) to the corresponding DOM elements.
 It appends the created DOM elements to the "photograph-header" element to display the photographer's profile.
 At the end of the code, the displayProfile function is added to the photographerFactory instance by assigning it as a property called displayProfile.
-  */
-
-  
+*/
 
 
 
-  
+
+

@@ -3,9 +3,9 @@ The adapter class encapsulates the logic for creating and managing the dropdown 
  while allowing it to be customized using arguments passed to its constructor and methods. */
 
  // dropdownAdapter.js
- function setupDropdownKeyboardNavigation(options) {
+ const setupDropdownKeyboardNavigation = (options) => {
   options.forEach((option, index) => {
-    option.addEventListener('keydown', event => {
+    option.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
         event.preventDefault();
         console.log('ArrowUp or ArrowLeft pressed');
@@ -23,7 +23,7 @@ The adapter class encapsulates the logic for creating and managing the dropdown 
       }
     });
   });
-}
+};
 
 class DropdownAdapter {
   constructor(dropContainerId, mediaData, lightbox, mediaFactory, DataFetcher) {
@@ -53,8 +53,8 @@ class DropdownAdapter {
       this.toggleArrow.classList.toggle('arrow');
     };
 
-    // toggle dropdown open . close when dropdown button is clicked
-    this.dropdownBtn.addEventListener('click', function (e) {
+    // toggle dropdown open/close when dropdown button is clicked
+    this.dropdownBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleDropdown();
     });
@@ -63,7 +63,7 @@ class DropdownAdapter {
     dropdownBtnText.id = 'dropdownBtnText';
     this.dropdownBtn.insertBefore(dropdownBtnText, this.toggleArrow);
 
-    // close dropdown when dom element is clicked
+    // close dropdown when DOM element is clicked
     document.documentElement.addEventListener('click', () => {
       if (this.dropdownMenu.classList.contains('show')) {
         toggleDropdown();
@@ -96,7 +96,7 @@ class DropdownAdapter {
     this.addOptions = (optionsData) => {
       const options = [];
 
-      optionsData.forEach(optionData => {
+      optionsData.forEach((optionData) => {
         const option = document.createElement('a');
         option.id = optionData.id;
         option.innerText = optionData.text;
@@ -115,16 +115,16 @@ class DropdownAdapter {
 let mediaData;
 
 // Fetch media data
-async function fetchMediaData() {
+const fetchMediaData = async () => {
   const params = new URLSearchParams(window.location.search);
   const photographerId = params.get('id');
   const dataFetcher = new DataFetcher();
   const media = await dataFetcher.fetchMediaData(photographerId);
   return media;
-}
+};
 
 // Assign value to mediaData variable
-fetchMediaData().then(media => {
+fetchMediaData().then((media) => {
   mediaData = media;
   console.log('this is the metadata', mediaData);
 
@@ -141,13 +141,13 @@ fetchMediaData().then(media => {
   const optionsData = [
     { id: 'popularité', text: 'Popularité', ariaLabel: 'Filter by popularity' },
     { id: 'date', text: 'Date', ariaLabel: 'Filter by date' },
-    { id: 'titre', text: 'Titre', ariaLabel: 'Filter by title' }
+    { id: 'titre', text: 'Titre', ariaLabel: 'Filter by title' },
   ];
 
   const options = dropdownAdapter.addOptions(optionsData);
 
   // Set the default option in the dropdown to "Popularité"
-  const defaultOption = options.find(option => option.id === 'popularité');
+  const defaultOption = options.find((option) => option.id === 'popularité');
   defaultOption.click();
 
   const dropdownBtnText = document.getElementById('dropdownBtnText');
@@ -158,14 +158,14 @@ fetchMediaData().then(media => {
   dropdownAdapter.filterMedia(defaultOption.id);
 
   // Add event listeners to the options
-  options.forEach(option => {
+  options.forEach((option) => {
     option.addEventListener('click', () => {
       // Update the text of the dropdown button
       const dropdownBtnText = document.getElementById('dropdownBtnText');
       dropdownBtnText.innerText = option.id;
 
       // Hide the selected option and show all other options
-      options.forEach(opt => opt.classList.remove('hidden'));
+      options.forEach((opt) => opt.classList.remove('hidden'));
       option.classList.add('hidden');
 
       // Filter media based on selected value
@@ -176,6 +176,7 @@ fetchMediaData().then(media => {
   // Call the setupDropdownKeyboardNavigation function
   setupDropdownKeyboardNavigation(options);
 });
+
 
 
 

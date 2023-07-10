@@ -19,7 +19,7 @@ function mediaFactory(media) {
   gallery.className = 'gallery';
   gallery.id = 'gallery-container';
 
-  // Create an instance of the likeButton class 
+  // Create an instance of the LikeButton class
   const likeButton = new LikeButton(media);
 
   // Loop through each item in the `media` array
@@ -87,13 +87,13 @@ function mediaFactory(media) {
 
       // Add an event listener to the likeBtn element
       likeBtn.addEventListener('click', () => {
-        // Call the increase likes method and pass in the id of the current media item
+        // Call the increaseLikes method and pass in the id of the current media item
         likeButton.increaseLikes(item.id);
 
         // Update the text content of the likeCounter element to display the new number of likes
         likeCounter.textContent = item.likes;
 
-        // Save the updated mediaData Array to local storage 
+        // Save the updated mediaData Array to local storage
         localStorage.setItem('mediaData', JSON.stringify(media));
       });
 
@@ -106,6 +106,7 @@ function mediaFactory(media) {
 
   return gallery;
 }
+
 
 
 /*

@@ -1,4 +1,4 @@
-function initializeAccessibility() {
+const initializeAccessibility = () => {
   // Add event listeners for keyboard navigation
   document.addEventListener('keydown', handleKeyDown);
 
@@ -32,22 +32,22 @@ function initializeAccessibility() {
     }
   }
 
-  function navigateSlide(direction) {
+  const navigateSlide = (direction) => {
     if (direction === 'previous') {
       lightbox.plusSlides(-1);
     } else if (direction === 'next') {
       lightbox.plusSlides(1);
     }
-  }
+  };
 
-  function closeModal() {
+  const closeModal = () => {
     lightbox.closeModal();
-  }
+  };
 
-  function focusFirstElement() {
+  const focusFirstElement = () => {
     const firstFocusableElement = document.querySelector('#lightbox-modal [tabindex="0"]');
     if (firstFocusableElement) {
       firstFocusableElement.focus();
     }
-  }
-}
+  };
+};

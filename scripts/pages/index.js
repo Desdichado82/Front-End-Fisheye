@@ -1,51 +1,52 @@
     
 
-    async function getPhotographers() {
-      try {
-        // Fetch data from the JSON file
-        const response = await fetch("./data/photographers.json");
-     
-        // Check if the response status is not ok and throw an error
-        if (!response.ok) {
-          throw new Error(`An error occurred: ${response.status}`);
-        }
-     
-        // Parse the response data as JSON
-        const data = await response.json();
-        console.log('Data returned by response.json():', data);
-        
-        // Return the data once it has been fetched
-        return data;
-      } catch (error) {
-        console.log(error);
-      }
+const getPhotographers = async () => {
+  try {
+    // Fetch data from the JSON file
+    const response = await fetch("./data/photographers.json");
+
+    // Check if the response status is not ok and throw an error
+    if (!response.ok) {
+      throw new Error(`An error occurred: ${response.status}`);
     }
 
-   
-    async function displayData(photographers) {
-        console.log('Data passed to displayData:', photographers);
-        const photographersSection = document.querySelector(".photographer_section");
-    
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    }
+    // Parse the response data as JSON
+    const data = await response.json();
+    console.log('Data returned by response.json():', data);
 
+    // Return the data once it has been fetched
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+const displayData = async (photographers) => {
+  console.log('Data passed to displayData:', photographers);
+  const photographersSection = document.querySelector(".photographer_section");
 
-    async function init() {
-        // Récupère les datas des photographes
-        const data = await getPhotographers();
-        console.log('Data returned by getPhotographers:', data);
-        const photographers = data.photographers;
-        const media = data.media;
-        displayData(photographers,media);
-        
-    }
-    
-    init();
+  photographers.forEach((photographer) => {
+    const photographerModel = photographerFactory(photographer);
+    const userCardDOM = photographerModel.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+  });
+};
+
+const init = async () => {
+  try {
+    // Retrieve photographer data
+    const data = await getPhotographers();
+    console.log('Data returned by getPhotographers:', data);
+    const photographers = data.photographers;
+    const media = data.media;
+    await displayData(photographers, media);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+init();
+
 
     /*
     The given code consists of three async JavaScript functions: getPhotographers, displayData, and init. Let's summarize each of them:

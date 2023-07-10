@@ -49,4 +49,3 @@ La deuxième méthode notify est redondante et semble être une définition en d
 En résumé, ce code définit une classe LikeButton qui gère le nombre de likes pour les éléments de média. Il permet d'incrémenter les likes, de calculer le nombre total de likes et de notifier les observateurs lorsque le nombre de likes change. La classe suit le modèle de l'observateur afin de fournir une conception flexible et découplée pour la gestion des likes dans les médias.
 */
 
-

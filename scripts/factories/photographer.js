@@ -1,7 +1,7 @@
-function photographerFactory(data) {
+const photographerFactory = (data) => {
   const { name, id, portrait, city, country, tagline, price } = data;
 
-  function getUserCardDOM() {
+  const getUserCardDOM = () => {
     const article = document.createElement('article');
     const link = document.createElement('a');
     const img = document.createElement('img');
@@ -9,10 +9,10 @@ function photographerFactory(data) {
     const location = document.createElement('p');
     const taglineTag = document.createElement('p');
     const priceTag = document.createElement('p');
+
     img.setAttribute('tabindex', '0');
     link.setAttribute('aria-label', 'View profile');
     link.setAttribute('aria-labelledby', `name-${id}`);
-    img.setAttribute('tabindex', '0');
     img.setAttribute('alt', `Portrait of ${name}`);
     h2.setAttribute('id', `name-${id}`);
 
@@ -21,7 +21,7 @@ function photographerFactory(data) {
     link.setAttribute('href', `photographer.html?${params.toString()}`);
     link.setAttribute('title', name);
     img.setAttribute('src', `assets/photographers/${portrait}`);
-    img.setAttribute('alt',name);
+    img.setAttribute('alt', `Portrait of ${name}`);
 
     h2.textContent = name;
     location.textContent = `${country}, ${city}`;
@@ -39,10 +39,11 @@ function photographerFactory(data) {
     article.appendChild(priceTag);
 
     return article;
-  }
+  };
 
   return { getUserCardDOM };
-}
+};
+
 
 /*
 The photographerFactory function takes an object called data as an argument. The object contains properties such as name, id, portrait, city, country, tagline, and price.
