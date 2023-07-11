@@ -12,7 +12,7 @@ const getPhotographers = async () => {
 
     // Parse the response data as JSON
     const data = await response.json();
-    console.log('Data returned by response.json():', data);
+    
 
     // Return the data once it has been fetched
     return data;
@@ -22,7 +22,7 @@ const getPhotographers = async () => {
 };
 
 const displayData = async (photographers) => {
-  console.log('Data passed to displayData:', photographers);
+ 
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
@@ -36,7 +36,6 @@ const init = async () => {
   try {
     // Retrieve photographer data
     const data = await getPhotographers();
-    console.log('Data returned by getPhotographers:', data);
     const photographers = data.photographers;
     const media = data.media;
     await displayData(photographers, media);

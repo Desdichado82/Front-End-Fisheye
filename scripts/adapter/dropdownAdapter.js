@@ -8,17 +8,17 @@ The adapter class encapsulates the logic for creating and managing the dropdown 
     option.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
         event.preventDefault();
-        console.log('ArrowUp or ArrowLeft pressed');
+       
         const prevIndex = index === 0 ? options.length - 1 : index - 1;
         options[prevIndex].focus();
       } else if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
         event.preventDefault();
-        console.log('ArrowDown or ArrowRight pressed');
+      
         const nextIndex = index === options.length - 1 ? 0 : index + 1;
         options[nextIndex].focus();
       } else if (event.key === 'Enter') {
         event.preventDefault();
-        console.log('Enter pressed');
+       
         option.click();
       }
     });
@@ -74,12 +74,12 @@ class DropdownAdapter {
     this.filterMedia = (selectedValue) => {
       if (selectedValue === 'popularité') {
         mediaData.sort((a, b) => b.likes - a.likes);
-        console.log('this is the data for popularity', mediaData);
+       
       } else if (selectedValue === 'date') {
         mediaData.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (selectedValue === 'titre') {
         mediaData.sort((a, b) => a.title.localeCompare(b.title));
-        console.log('this is the filterdata', mediaData);
+       
       }
 
       // Update lightbox with filtered media
@@ -126,7 +126,7 @@ const fetchMediaData = async () => {
 // Assign value to mediaData variable
 fetchMediaData().then((media) => {
   mediaData = media;
-  console.log('this is the metadata', mediaData);
+  
 
   // Create a sorted array for the lightbox
   const sortedMediaData = [...mediaData];
@@ -174,12 +174,12 @@ fetchMediaData().then((media) => {
       // Sort the mediaData array based on the selected value
       if (option.id === 'popularité') {
         sortedMediaData.sort((a, b) => b.likes - a.likes);
-        console.log('this is the data for popularity', sortedMediaData);
+      
       } else if (option.id === 'date') {
         sortedMediaData.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (option.id === 'titre') {
         sortedMediaData.sort((a, b) => a.title.localeCompare(b.title));
-        console.log('this is the filterdata', sortedMediaData);
+   
       }
 
       // Update lightbox with sorted media

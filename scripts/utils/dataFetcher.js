@@ -22,11 +22,11 @@ class DataFetcher {
   }
 
   async fetchMediaData(photographerId) {
-    console.log('fetchMediaData called with photographerId:', photographerId);
+    
     const data = await this.fetchData('media');
-    console.log('media data fetched:', data);
+    
     const media = data.filter((item) => item.photographerId == photographerId);
-    console.log('filtered media data:', media);
+ 
     return media;
   }
 

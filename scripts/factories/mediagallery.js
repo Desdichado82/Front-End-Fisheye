@@ -4,10 +4,10 @@
 
 // This function takes in an array of `media` objects as an argument and returns a `gallery` element
 function mediaFactory(media) {
-  console.log('mediaFactory called with media:', media);
+
 
   const main = document.getElementById('main');
-  console.log('main element:', main);
+
 
   // Clear existing gallery
   const existingGallery = main.querySelector('.gallery');
@@ -24,8 +24,7 @@ function mediaFactory(media) {
 
   // Loop through each item in the `media` array
   media.forEach((item) => {
-    // Log a message to the console indicating that the function is processing the current `item`
-    console.log('processing media item:', item);
+   
 
     // Declare a variable to hold the media element (either an `img` or `video` element)
     let mediaElement;

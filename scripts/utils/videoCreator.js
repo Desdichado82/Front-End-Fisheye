@@ -1,5 +1,5 @@
 const createVideoElement = (item) => {
-  console.log('creating video element for video:', item.video);
+
 
   const mediaElement = document.createElement('video');
   const mediaSource = document.createElement('source');

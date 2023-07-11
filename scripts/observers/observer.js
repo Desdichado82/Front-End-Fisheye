@@ -5,7 +5,7 @@ class Subject {
 
   // Add an observer to the list
   addObserver(observer) {
-    console.log('Subject.addObserver called with observer:', observer);
+   
     this.observers.push(observer);
   }
 
@@ -19,7 +19,7 @@ class Subject {
 
   // Notify all observers that an event has occurred
   notify(data) {
-    console.log('Subject.notify called with data:', data);
+   
     this.observers.forEach(observer => observer.update(data));
   }
 }

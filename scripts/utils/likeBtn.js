@@ -3,40 +3,49 @@ class LikeButton extends Subject {
     super();
     this.media = media;
     this.totalLikes = this.getTotalLikes();
-    console.log('initial totalLikes:', this.totalLikes);
+    this.likedItems = new Set();
   }
 
   increaseLikes(id) {
     console.log('increaseLikes called with id:', id);
-    this.media.forEach(item => {
+    for (let i = 0; i < this.media.length; i++) {
+      const item = this.media[i];
       if (item.id === id) {
-        item.likes++;
-        console.log('item.likes incremented:', item.likes);
-        this.totalLikes++;
-        console.log('this.totalLikes incremented:', this.totalLikes);
-        
-        // Notify all observers that the likes property has been incremented
+        if (this.likedItems.has(id)) {
+          item.likes--;
+          this.totalLikes--;
+          this.likedItems.delete(id);
+        } else {
+          item.likes++;
+          this.totalLikes++;
+          this.likedItems.add(id);
+        }
+
+        // Notify all observers that the likes property has been updated
         this.notify(item.likes);
+        break;
       }
-    });
+    }
   }
 
   getTotalLikes() {
     let totalLikes = 0;
-    this.media.forEach(item => {
+    for (let i = 0; i < this.media.length; i++) {
+      const item = this.media[i];
       totalLikes += item.likes;
-    });
-
-    console.log('getTotalLikes called, returning:', totalLikes);
+    }
     return totalLikes;
   }
 
   notify(data) {
-    this.observers.forEach(observer => observer.update(data));
+    for (let i = 0; i < this.observers.length; i++) {
+      const observer = this.observers[i];
+      observer.update(data);
+    }
   }
-
-
 }
+
+
 
 /*
 Ce code définit une classe LikeButton qui étend une classe Subject, probablement pour mettre en œuvre le modèle de l'observateur. Voici une explication du code :
