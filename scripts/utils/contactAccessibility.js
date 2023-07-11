@@ -21,7 +21,7 @@ function handleKeyDown(event) {
           break;
         case 'Escape':
           event.preventDefault();
-          closeForm();
+          closeContactForm();
           break;
         case 'Tab':
           if (!modal.contains(activeElement)) {
@@ -52,7 +52,7 @@ function handleKeyDown(event) {
     }
   }
   
-  function getFocusableElements() {
+  const getFocusableElements = () => {
     const modal = document.getElementById('contact_modal');
     return Array.from(modal.querySelectorAll('input, textarea, button'));
   }
@@ -67,7 +67,7 @@ function navigateFormElements(direction) {
   }
 }
 
-function closeForm() {
+const closeContactForm = () => {
     const modal = document.getElementById('contact_modal');
     const contactButton = document.querySelector('.contact_button');
   
@@ -76,12 +76,13 @@ function closeForm() {
     contactButton.focus();
 }
 
-function focusFirstElement() {
+const focusFirstElement = () => {
   const firstElement = formElements[0];
   if (firstElement) {
     firstElement.focus();
   }
 }
+
 
 /*
 It starts by selecting all form elements within the contact modal using document.querySelectorAll('#contact_modal input, #contact_modal textarea, #contact_modal button'). The selected elements are stored in the formElements array.

@@ -1,14 +1,16 @@
-function displayModal() {
+const displayModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
   const firstNameInput = document.getElementById("first-name");
   firstNameInput.focus();
-}
+};
 
-function closeForm() {
+  const closeForm = () => {
   const modal = document.getElementById("contact_modal");
+  const contactButton = document.querySelector('.contact_button');
   modal.style.display = "none";
-}
+  contactButton.focus();
+};
 
 const contactButton = document.querySelector('.contact_button');
 contactButton.addEventListener('click', displayModal);
@@ -58,6 +60,7 @@ form.addEventListener('submit', (event) => {
     closeForm();
   });
 });
+
 
 /*
 The displayModal function is called when a contact button with the class "contact_button" is clicked. It retrieves the modal element with the ID "contact_modal" and sets its display style to "block", making it visible. It also focuses on the first name input field.
