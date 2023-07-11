@@ -128,10 +128,13 @@ fetchMediaData().then((media) => {
   mediaData = media;
   console.log('this is the metadata', mediaData);
 
+  // Create a sorted array for the lightbox
+  const sortedMediaData = [...mediaData];
+
   // Create an instance of the DropdownAdapter class
   const dropdownAdapter = new DropdownAdapter(
     'dropdown-container',
-    mediaData,
+    sortedMediaData, // Pass the sorted media data to the dropdown adapter
     lightbox,
     mediaFactory,
     DataFetcher
@@ -168,14 +171,32 @@ fetchMediaData().then((media) => {
       options.forEach((opt) => opt.classList.remove('hidden'));
       option.classList.add('hidden');
 
-      // Filter media based on selected value
-      dropdownAdapter.filterMedia(option.id);
+      // Sort the mediaData array based on the selected value
+      if (option.id === 'popularité') {
+        sortedMediaData.sort((a, b) => b.likes - a.likes);
+        console.log('this is the data for popularity', sortedMediaData);
+      } else if (option.id === 'date') {
+        sortedMediaData.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } else if (option.id === 'titre') {
+        sortedMediaData.sort((a, b) => a.title.localeCompare(b.title));
+        console.log('this is the filterdata', sortedMediaData);
+      }
+
+      // Update lightbox with sorted media
+      if (lightbox) {
+        lightbox.media = sortedMediaData;
+        lightbox.updateMediaElements();
+      }
+
+      // Update Gallery with sorted media
+      mediaFactory(sortedMediaData);
     });
   });
 
   // Call the setupDropdownKeyboardNavigation function
   setupDropdownKeyboardNavigation(options);
 });
+
 
 
 

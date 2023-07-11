@@ -6,8 +6,6 @@
     this.lightboxModal = document.createElement('div');
     this.lightboxModal.id = 'lightbox-modal';
     this.lightboxModal.className = 'lightbox';
-
-    // Set the `role` attribute of the `lightboxModal` element to `dialog`
     this.lightboxModal.setAttribute('role', 'dialog');
 
     this.slideIndex = media.findIndex((m) => m.id === item.id) + 1;
@@ -16,25 +14,24 @@
     modalContent.className = 'modal-content';
     this.lightboxModal.appendChild(modalContent);
 
-    // Set modalContent property
     this.modalContent = modalContent;
 
-    for (let i = 0; i < media.length; i++) {
+    media.forEach((m) => {
       const mySlide = document.createElement('li');
       mySlide.className = 'slides';
 
       let mediaElement;
-      if (media[i].image) {
-        mediaElement = createImageElement(media[i]);
+      if (m.image) {
+        mediaElement = createImageElement(m);
         mySlide.appendChild(mediaElement);
-      } else if (media[i].video) {
-        mediaElement = createVideoElement(media[i]);
+      } else if (m.video) {
+        mediaElement = createVideoElement(m);
         mediaElement.controls = true;
         mySlide.appendChild(mediaElement);
       }
 
       modalContent.appendChild(mySlide);
-    }
+    });
 
     const closeButton = document.createElement('button');
     closeButton.className = 'close cursor';
@@ -93,30 +90,27 @@
   }
 
   updateMediaElements() {
-    // Remove existing media elements
     const slides = document.querySelectorAll('.slides');
     slides.forEach((slide) => {
       slide.remove();
     });
 
-    // Create new media elements
-    for (let i = 0; i < this.media.length; i++) {
+    this.media.forEach((m) => {
       const mySlide = document.createElement('li');
       mySlide.className = 'slides';
 
       let mediaElement;
-      if (this.media[i].image) {
-        mediaElement = createImageElement(this.media[i]);
+      if (m.image) {
+        mediaElement = createImageElement(m);
         mySlide.appendChild(mediaElement);
-      } else if (this.media[i].video) {
-        mediaElement = createVideoElement(this.media[i]);
+      } else if (m.video) {
+        mediaElement = createVideoElement(m);
         mediaElement.controls = true;
         mySlide.appendChild(mediaElement);
       }
 
-      // Append mySlide to modalContent property
       this.modalContent.appendChild(mySlide);
-    }
+    });
   }
 
   closeModal() {
@@ -124,21 +118,15 @@
   }
 
   plusSlides(n) {
-    // Implement plusSlides logic here
     this.showSlides(this.slideIndex += n);
   }
 
   currentSlide(n) {
-    // Implement currentSlide logic here
     this.showSlides(this.slideIndex = n);
   }
 
   showSlides(n) {
-    console.log('showSlides called with n:', n);
-    console.log('this.slideIndex:', this.slideIndex);
-
     const slides = document.getElementsByClassName('slides');
-    console.log('slides.length:', slides.length);
 
     if (n > slides.length) {
       this.slideIndex = 1;
@@ -149,43 +137,30 @@
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = 'none';
     }
-    console.log(slides.length);
     slides[this.slideIndex - 1].style.display = 'block';
-    // Update caption
+
     const captionP = document.getElementById('caption');
     captionP.innerHTML = `${this.media[this.slideIndex - 1].title}`;
   }
 }
 
-// Declare lightbox variable outside of openLightbox function
 let lightbox;
 
 function openLightbox(media, item) {
-  // Check if lightbox variable is already defined
   if (lightbox) {
-    // If it is, update its media and slideIndex properties
     lightbox.media = media;
     lightbox.slideIndex = media.findIndex((m) => m.id === item.id) + 1;
-
-    // Show the lightbox modal
     lightbox.lightboxModal.style.display = 'grid';
-
-    // Show the slide for the clicked item
     lightbox.showSlides(lightbox.slideIndex);
   } else {
-    // If lightbox variable is not defined, create a new instance of the Lightbox class with the media array and item as arguments
     lightbox = new Lightbox(media, item);
-
-    // Show the lightbox modal
     lightbox.lightboxModal.style.display = 'grid';
-
-    // Show the slide for the clicked item
     lightbox.showSlides(lightbox.slideIndex);
   }
 
-  // Initialize accessibility script
   initializeAccessibility();
 }
+
 
     
 
