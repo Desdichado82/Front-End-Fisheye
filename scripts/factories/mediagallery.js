@@ -1,9 +1,13 @@
+import { createImageElement } from '../utils/imageCreator.js';
+import { createVideoElement } from '../utils/videoCreator.js';
+import { openLightbox } from '../utils/lightbox.js';
+import LikeButton from '../utils/likeBtn.js';
 /*this code defines a function that can be used to create a gallery of media items.
  The gallery displays each media item along with its title and number of likes, 
  and allows users to open a lightbox by clicking on a media item. */
 
 // This function takes in an array of `media` objects as an argument and returns a `gallery` element
-const mediaFactory = (media) => {
+export const mediaFactory = (media) => {
   const main = document.getElementById('main');
 
   // Clear existing gallery

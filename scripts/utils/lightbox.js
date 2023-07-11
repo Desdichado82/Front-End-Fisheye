@@ -1,5 +1,10 @@
+import { createImageElement } from '../utils/imageCreator.js';
+import { createVideoElement } from '../utils/videoCreator.js';
+import { initializeAccessibility } from '../utils/accessibility.js';
+
 /*this code defines a class that can be used to create a lightbox for displaying media.
  The lightbox can be opened and closed, and its contents can be updated dynamically. */
+
  class Lightbox {
   constructor(media, item) {
     this.media = media;
@@ -161,6 +166,8 @@ function openLightbox(media, item) {
   initializeAccessibility();
 }
 
+// Export the Lightbox class and openLightbox function
+export { Lightbox, openLightbox };
 
     
 

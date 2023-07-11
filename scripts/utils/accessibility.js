@@ -1,4 +1,5 @@
-const initializeAccessibility = () => {
+
+export const initializeAccessibility = () => {
   // Add event listeners for keyboard navigation
   document.addEventListener('keydown', handleKeyDown);
 
@@ -31,7 +32,7 @@ const initializeAccessibility = () => {
       }
     }
   }
-
+ let lightbox;
   const navigateSlide = (direction) => {
     if (direction === 'previous') {
       lightbox.plusSlides(-1);

@@ -24,6 +24,8 @@ class Subject {
   }
 }
 
+export default Subject;
+
 /*
 Ce code définit une classe Subject qui sert de sujet ou d'observable dans le modèle d'observation. Voici une explication du code :
 

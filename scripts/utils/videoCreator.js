@@ -1,4 +1,4 @@
-const createVideoElement = (item) => {
+export const createVideoElement = (item) => {
 
 
   const mediaElement = document.createElement('video');

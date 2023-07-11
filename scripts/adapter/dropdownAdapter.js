@@ -1,7 +1,8 @@
 /*This code creates a dropdown filter for media using an adapter design pattern. 
 The adapter class encapsulates the logic for creating and managing the dropdown filter,
  while allowing it to be customized using arguments passed to its constructor and methods. */
- import DataFetcher from '../utils/dataFetcher.js';
+import DataFetcher from '../utils/dataFetcher.js';
+import {mediaFactory } from '../factories/mediagallery.js';
 
  // dropdownAdapter.js
  const setupDropdownKeyboardNavigation = (options) => {
@@ -27,7 +28,7 @@ The adapter class encapsulates the logic for creating and managing the dropdown 
 };
 
 class DropdownAdapter {
-  constructor(dropContainerId, mediaData, lightbox, mediaFactory, DataFetcher) {
+  constructor(dropContainerId, mediaData, lightbox, mediaFactory) {
     this.dropContainer = document.getElementById(dropContainerId);
     this.dropdownWrapper = document.createElement('div');
     this.dropdownWrapper.id = 'dropdownWrapper';
@@ -114,6 +115,7 @@ class DropdownAdapter {
 
 // Define mediaData variable
 let mediaData;
+let lightbox;
 
 // Fetch media data
 const fetchMediaData = async () => {
@@ -197,6 +199,8 @@ fetchMediaData().then((media) => {
   // Call the setupDropdownKeyboardNavigation function
   setupDropdownKeyboardNavigation(options);
 });
+
+export default DropdownAdapter;
 
 
 

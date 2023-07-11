@@ -1,5 +1,5 @@
 // This function takes in an `item` object as an argument and returns an `img` element
-const createImageElement = (item) => {
+export const createImageElement = (item) => {
  
 
   const mediaElement = document.createElement('img');

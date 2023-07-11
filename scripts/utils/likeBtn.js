@@ -1,3 +1,5 @@
+import Subject from '../observers/observer.js';
+
 class LikeButton extends Subject {
   constructor(media) {
     super();
@@ -7,7 +9,7 @@ class LikeButton extends Subject {
   }
 
   increaseLikes(id) {
-    console.log('increaseLikes called with id:', id);
+  
     for (let i = 0; i < this.media.length; i++) {
       const item = this.media[i];
       if (item.id === id) {
@@ -44,6 +46,8 @@ class LikeButton extends Subject {
     }
   }
 }
+
+export default LikeButton;
 
 
 
