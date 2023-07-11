@@ -1,4 +1,4 @@
-    
+import { photographerFactory } from '../factories/photographer.js';
 
 const getPhotographers = async () => {
   try {

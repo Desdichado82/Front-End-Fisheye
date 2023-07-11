@@ -1,6 +1,7 @@
 /*This code creates a dropdown filter for media using an adapter design pattern. 
 The adapter class encapsulates the logic for creating and managing the dropdown filter,
  while allowing it to be customized using arguments passed to its constructor and methods. */
+ import DataFetcher from '../utils/dataFetcher.js';
 
  // dropdownAdapter.js
  const setupDropdownKeyboardNavigation = (options) => {

@@ -1,3 +1,7 @@
+import { photographerFactory } from '../factories/photographer.js';
+import { displayProfileDecorator } from '../decorator/displayProfile.js';
+import DataFetcher from '../utils/dataFetcher.js';
+
 const dataFetcher = new DataFetcher();
 
 

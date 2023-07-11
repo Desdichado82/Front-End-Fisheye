@@ -1,5 +1,5 @@
 // Define a decorator function that takes a photographerFactory instance and additional arguments for the necessary variables
-const displayProfileDecorator = (photographerFactory, name, portrait, city, country, tagline) => {
+export const displayProfileDecorator = (photographerFactory, name, portrait, city, country, tagline) => {
   // Define the displayProfile function
   const displayProfile = () => {
     // Implement the displayProfile logic here

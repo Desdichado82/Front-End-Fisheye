@@ -1,6 +1,6 @@
 /*this code defines a class that can be used to fetch data from a JSON file and manipulate it in various ways. */
 
-class DataFetcher {
+export default class DataFetcher {
   constructor() {
     this.queryString = window.location.search;
     this.id = this.getId(this.queryString);
@@ -16,17 +16,14 @@ class DataFetcher {
   }
 
   async fetchData(property) {
-    return fetch('./data/photographers.json')
-      .then((response) => response.json())
-      .then((jsonData) => jsonData[property]);
+    const response = await fetch('./data/photographers.json');
+    const jsonData = await response.json();
+    return jsonData[property];
   }
 
   async fetchMediaData(photographerId) {
-    
     const data = await this.fetchData('media');
-    
     const media = data.filter((item) => item.photographerId == photographerId);
- 
     return media;
   }
 
@@ -40,6 +37,7 @@ class DataFetcher {
     return photographersArray.filter((artist) => artist.id == id)[0];
   }
 }
+
 
   /*
 This code defines a DataFetcher class responsible for fetching and manipulating data. Here's a summary of what the code does:

@@ -3,11 +3,8 @@
  and allows users to open a lightbox by clicking on a media item. */
 
 // This function takes in an array of `media` objects as an argument and returns a `gallery` element
-function mediaFactory(media) {
-
-
+const mediaFactory = (media) => {
   const main = document.getElementById('main');
-
 
   // Clear existing gallery
   const existingGallery = main.querySelector('.gallery');
@@ -24,8 +21,6 @@ function mediaFactory(media) {
 
   // Loop through each item in the `media` array
   media.forEach((item) => {
-   
-
     // Declare a variable to hold the media element (either an `img` or `video` element)
     let mediaElement;
 
@@ -43,22 +38,22 @@ function mediaFactory(media) {
     likeIcon.classList.add('bx', 'bxs-heart');
 
     likeBtn.setAttribute('aria-label', 'Like button');
-    likeBtn.setAttribute('data-id', item.id);
+    likeBtn.dataset.id = item.id;
 
     // Check if the current `item` has an `image` property
     if (item.image) {
       // If it does, create an `img` element using the `createImageElement` function
       mediaElement = createImageElement(item);
-      mediaElement.setAttribute('alt', item.title);
+      mediaElement.alt = item.title;
       mediaElement.setAttribute('aria-label', item.title);
-      mediaElement.setAttribute('tabindex', '0');
+      mediaElement.tabIndex = 0;
       article.appendChild(mediaElement);
     } else if (item.video) {
       // If the current `item` has a `video` property, create a `video` element using the `createVideoElement` function
       mediaElement = createVideoElement(item);
-      mediaElement.setAttribute('alt', item.title);
+      mediaElement.alt = item.title;
       mediaElement.setAttribute('aria-label', item.title);
-      mediaElement.setAttribute('tabindex', '0');
+      mediaElement.tabIndex = 0;
       article.appendChild(mediaElement);
     }
 
@@ -104,7 +99,8 @@ function mediaFactory(media) {
   main.appendChild(gallery);
 
   return gallery;
-}
+};
+
 
 
 
